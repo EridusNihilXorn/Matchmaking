@@ -17,14 +17,8 @@ void playersFileToVector(ifstream& players, string fileName, vector<int>& player
 {
 	string line;
 	string word;
-	try
-	{
-		players.open(fileName);
-	}
-	catch (ios_base::failure)
-	{
-		cout << "Failed to open players file.\n";
-	}
+	try	{players.open(fileName);}
+	catch (ios_base::failure)	{cout << "Failed to open players file.\n";}
 	int counter = 0;
 	if (players.good())
 	{
@@ -47,14 +41,8 @@ void createTeamList(ifstream& teams, string teamsFileName, vector<pair<int,int>>
 {
 	string line, word;
 	int playerRating, curTeamNum = 0;
-	try
-	{
-		teams.open(teamsFileName);
-	}
-	catch (ios_base::failure)
-	{
-		cout << "Failed to open teams file.\n";
-	}
+	try	{teams.open(teamsFileName);}
+	catch (ios_base::failure)	{cout << "Failed to open teams file.\n";}
 	if (teams.good())
 	{
 		while (getline(teams, line))  //Getting current string-team.
@@ -95,14 +83,8 @@ int main()
 	createTeamList(teams, "teams.txt", teamsRatings, playersRatings);
 	sort(teamsRatings.begin(), teamsRatings.end(), compareFunc);
 
-	try
-	{
-		matchMaking.open("TEST_A_pairs.txt");       //Change filename to write in correct file!
-	}
-	catch (ios_base::failure)
-	{
-		cout << "Failed to open test file.\n";
-	}
+	try	{matchMaking.open("TEST_A_pairs.txt");}      //Change filename to write in correct file!
+	catch (ios_base::failure){cout << "Failed to open test file.\n";}
 
 	if (teamsRatings.size() % 2 == 0)
 	{
@@ -118,7 +100,7 @@ int main()
 	//since their difference in rating is large.
 	//But it is efficient for a large amount of teams with low difference.
 	//We have extra large amount of players, that's why i use this one.
-	//More complex algorithm is written in document with more details.
+	//More complex algorithm is written in document with more details. 
 	if (teamsRatings.size() % 2 != 0)
 	{
 		if (teamsRatings[1].second - teamsRatings[0].second > teamsRatings[teamsRatings.size() - 1].second - teamsRatings[teamsRatings.size() - 2].second)
